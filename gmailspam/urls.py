@@ -20,4 +20,5 @@ from gmailspam.views import *
 urlpatterns = [
     url(r'^tokenize$', TokenizeView.as_view()),
     url(r'^detect$', LangDetectView.as_view()),
+    url(r'^dataset', ShuffleTrainTestView.as_view()),
 ]
