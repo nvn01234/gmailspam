@@ -43,11 +43,24 @@ class ShuffleTrainTestView(TemplateView):
     template_name = 'index.html'
 
     def render_to_response(self, context, **response_kwargs):
-        ids = [x.id for x in Extracted.objects.all()]
+        self.spam()
+        self.non_spam()
+        return super(ShuffleTrainTestView, self).render_to_response(context, **response_kwargs)
+
+    def spam(self):
+        ids = [x.id for x in Extracted.objects.filter(label="SPAM")]
         random.shuffle(ids)
-        pos = int(len(ids)*0.3)
+        pos = int(len(ids) * 0.3)
         data_test = ids[:pos]
         data_train = ids[pos:]
         Extracted.objects.filter(id__in=data_test).update(data_set="test")
         Extracted.objects.filter(id__in=data_train).update(data_set="train")
-        return super(ShuffleTrainTestView, self).render_to_response(context, **response_kwargs)
+
+    def non_spam(self):
+        ids = [x.id for x in Extracted.objects.filter(label="NON-SPAM")]
+        random.shuffle(ids)
+        pos = int(len(ids) * 0.3)
+        data_test = ids[:pos]
+        data_train = ids[pos:]
+        Extracted.objects.filter(id__in=data_test).update(data_set="test")
+        Extracted.objects.filter(id__in=data_train).update(data_set="train")
