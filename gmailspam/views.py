@@ -37,30 +37,3 @@ class LangDetectView(TemplateView):
                 print m.id, "error"
         Extracted.objects.exclude(lang__in=["vi", "en"]).delete()
         return super(LangDetectView, self).render_to_response(context, **response_kwargs)
-
-
-class ShuffleTrainTestView(TemplateView):
-    template_name = 'index.html'
-
-    def render_to_response(self, context, **response_kwargs):
-        self.spam()
-        self.non_spam()
-        return super(ShuffleTrainTestView, self).render_to_response(context, **response_kwargs)
-
-    def spam(self):
-        ids = [x.id for x in Extracted.objects.filter(label="SPAM")]
-        random.shuffle(ids)
-        pos = int(len(ids) * 0.3)
-        data_test = ids[:pos]
-        data_train = ids[pos:]
-        Extracted.objects.filter(id__in=data_test).update(data_set="test")
-        Extracted.objects.filter(id__in=data_train).update(data_set="train")
-
-    def non_spam(self):
-        ids = [x.id for x in Extracted.objects.filter(label="NON-SPAM")]
-        random.shuffle(ids)
-        pos = int(len(ids) * 0.3)
-        data_test = ids[:pos]
-        data_train = ids[pos:]
-        Extracted.objects.filter(id__in=data_test).update(data_set="test")
-        Extracted.objects.filter(id__in=data_train).update(data_set="train")

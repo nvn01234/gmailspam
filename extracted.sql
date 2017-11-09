@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-11-09 01:01:38
+Date: 2017-11-09 16:09:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +20,6 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `extracted`;
 CREATE TABLE `extracted` (
-  `data_set` varchar(255) DEFAULT NULL,
   `raw` longtext,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tokenize` longtext,
@@ -30,4 +29,4 @@ CREATE TABLE `extracted` (
   `numOfLink` int(11) DEFAULT NULL,
   `numOfImage` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6296 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7987 DEFAULT CHARSET=utf8;

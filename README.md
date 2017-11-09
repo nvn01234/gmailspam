@@ -20,4 +20,3 @@ Lần lượt chạy các URL sau (đợi URL này hoàn thành mới được c
 
 - [tokenize](http://localhost:8000/tokenize)
 
-- [lấy 30% làm dữ liệu test, 70% train](http://localhost:8000/dataset)
