@@ -3,7 +3,7 @@ import random
 
 from django.views.generic import TemplateView
 from pyvi.pyvi import ViTokenizer
-from models import Extracted
+from .models import Extracted
 from langdetect import detect
 
 
@@ -12,7 +12,7 @@ class TokenizeView(TemplateView):
 
     def render_to_response(self, context, **response_kwargs):
         for m in Extracted.objects.filter(tokenize__isnull=True):
-            print m.id, m.lang
+            print(m.id, m.lang)
             if m.lang == "vi":
                 m.tokenize = ViTokenizer.tokenize(m.normalized)
             else:
@@ -29,11 +29,13 @@ class LangDetectView(TemplateView):
         for m in Extracted.objects.filter(lang__isnull=True):
             try:
                 m.lang = detect(m.normalized)
-                print m.id, m.lang
+                print(m.id, m.lang)
                 m.save()
             except:
                 m.lang = "error"
                 m.save()
-                print m.id, "error"
+                print(m.id, "error")
         Extracted.objects.exclude(lang__in=["vi", "en"]).delete()
         return super(LangDetectView, self).render_to_response(context, **response_kwargs)
+class HomePageView(TemplateView):
+    template_name = "index.html"

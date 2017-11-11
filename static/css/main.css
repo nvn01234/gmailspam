@@ -1,0 +1,12 @@
+h1 {
+    text-align: center;
+}
+.container-fluid{
+    margin: 20px 20px;
+}
+.container{
+    margin: 20px 20px;
+}
+.col-md-6 {
+    float: left;
+}
