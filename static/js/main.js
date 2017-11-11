@@ -5,7 +5,7 @@
 $("#submit").click(function () {
     var input_email = $("#input-email").val();
     $.post(
-        "SpamEmail.py",         //name of request
+        "/result",         //url của view mới
         {input: input_email},
         function (response) {
             $("#result").html(response);
