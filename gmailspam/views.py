@@ -49,7 +49,11 @@ class HomePageView(TemplateView):
 def return_result(request):
     inputEmail = request.POST.get("inputEmail","")
     print(inputEmail)
-    lang = detect(inputEmail)
+
+    try:
+        lang = detect(inputEmail)
+    except:
+        lang = "en"
 
     if lang != 'vi':
         lang = "en"
