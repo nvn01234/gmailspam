@@ -1,19 +1,15 @@
+// function get data from server through request
 
 $("#submit").click(function (event) {
 
-    // Get some values from elements on the page:
-    var $form = $("#submit-form"),
-        term = $form.find("input[id='input-email']").val(),
-        url = $form.attr("action");
+    var $form = $("#submit-form");
 
-    console.log($form.serialize());
     $("#result").html("Đang chờ xử lý ... ");
     $.ajax({
         url: '/result',
         method: 'post',
-        data: $form.serialize(),
+        data: $form.serialize(),    //send input data
         success: function (res) {
-            console.log(res);
             $("#result").html("KẾT QUẢ: " + res);
         },
         error: function (e) {
