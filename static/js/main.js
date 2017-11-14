@@ -7,13 +7,14 @@ $("#submit").click(function (event) {
         url = $form.attr("action");
 
     console.log($form.serialize());
+    $("#result").html("Đang chờ xử lý ... ");
     $.ajax({
         url: '/result',
         method: 'post',
         data: $form.serialize(),
         success: function (res) {
             console.log(res);
-            $("#result").html(res);
+            $("#result").html("KẾT QUẢ: " + res);
         },
         error: function (e) {
             console.log(e);
