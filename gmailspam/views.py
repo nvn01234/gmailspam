@@ -44,19 +44,22 @@ class LangDetectView(TemplateView):
 class HomePageView(TemplateView):
     template_name = "index.html"
 
-#fucntion return result from server
-def returnResult(request):
+# function return result from server
+
+def return_result(request):
     inputEmail = request.POST.get("inputEmail","")
     print(inputEmail)
-    tokenize = ViTokenizer.tokenize(inputEmail)
     lang = detect(inputEmail)
 
     if lang != 'vi':
         lang = "en"
+    else:
+        # only vietnamese email has to tokenize
+        inputEmail = ViTokenizer.tokenize(inputEmail)
 
     data = {
         'lang':lang,
-        'text':tokenize
+        'text':inputEmail
     }
 
     response = requests.post("http://localhost:5000/predict",json=data)

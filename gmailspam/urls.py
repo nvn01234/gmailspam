@@ -16,11 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 
 from gmailspam.views import *
-from gmailspam.views import returnResult
+from gmailspam.views import return_result
 
 urlpatterns = [
     url(r'^tokenize$', TokenizeView.as_view()),
     url(r'^detect$', LangDetectView.as_view()),
     url(r'^$', HomePageView.as_view(), name='home'),
-    url(r'^result$', returnResult),
+    url(r'^result$', return_result),
 ]

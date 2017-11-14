@@ -39,7 +39,7 @@ $("#submit").click(function (event) {
         data: $form.serialize(),
         success: function (res) {
             console.log(res);
-
+            $("#result").html(res);
         },
         error: function (e) {
             console.log(e);
