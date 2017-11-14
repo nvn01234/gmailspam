@@ -7,6 +7,7 @@ from django.views.generic import TemplateView
 from pyvi.pyvi import ViTokenizer
 from .models import Extracted
 from langdetect import detect
+import requests
 
 
 class TokenizeView(TemplateView):
@@ -45,6 +46,18 @@ class HomePageView(TemplateView):
 
 #fucntion return result from server
 def returnResult(request):
-    result = request.POST.get("input","")
-    print(result)
-    return HttpResponse("spam")
+    inputEmail = request.POST.get("inputEmail","")
+    print(inputEmail)
+    tokenize = ViTokenizer.tokenize(inputEmail)
+    lang = detect(inputEmail)
+
+    if lang != 'vi':
+        lang = "en"
+
+    data = {
+        'lang':lang,
+        'text':tokenize
+    }
+
+    response = requests.post("http://localhost:5000/predict",json=data)
+    return HttpResponse(response)

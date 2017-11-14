@@ -32,12 +32,14 @@ $("#submit").click(function (event) {
 
     //send data using post
     // var posting = $.post(url, {input: term});
+    console.log($form.serialize());
     $.ajax({
         url: '/result',
         method: 'post',
         data: $form.serialize(),
         success: function (res) {
             console.log(res);
+
         },
         error: function (e) {
             console.log(e);
