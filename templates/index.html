@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Filter spam email</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <script src="{% static 'js/jquery.min.js' %}"></script>
 </head>
 <body class = "container-fluid">
@@ -15,13 +15,15 @@
     <div class="container">
 
         <!--input email content-->
-        <div class="form-group col-md-6">
-            <textarea class="form-control" rows = "10" id="input-email"></textarea>
+        <form class="form-group col-md-6" action="/" id="submit-form">
+            {% csrf_token %}
+{#            <textarea class="form-control" rows = "10" id="input-email"></textarea>#}
+            <input type="text" class="form-control" id="input-email">
             <br>
-            <button type="button" class="btn btn-success" id="submit" method="POST" action="/submitted">Submit</button>
-        </div>
+            <button type="button" class="btn btn-success" id="submit">Submit</button>
+        </form>
 
-        <!--result spam or not-->
+        <!--result: spam or not-->
         <div class="alert alert-warning col-md-6">
             <p id="result"></p>
         </div>

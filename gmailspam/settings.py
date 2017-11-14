@@ -77,9 +77,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gmail',
-        'HOST': 'localhost',
+        'HOST': '112.137.142.8',
+        'PORT': 5306,
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'dhqghn',
     }
 }
 
@@ -121,3 +122,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Add these new lines
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

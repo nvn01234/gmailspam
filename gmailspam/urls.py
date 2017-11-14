@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^tokenize$', TokenizeView.as_view()),
     url(r'^detect$', LangDetectView.as_view()),
     url(r'^$', HomePageView.as_view(), name='hơme'),
+    url(r'^result$', returnResult),
 ]

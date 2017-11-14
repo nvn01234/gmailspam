@@ -1,6 +1,8 @@
 # coding=utf-8
 import random
 
+from django.http import HttpResponse
+from django.shortcuts import render
 from django.views.generic import TemplateView
 from pyvi.pyvi import ViTokenizer
 from .models import Extracted
@@ -37,5 +39,12 @@ class LangDetectView(TemplateView):
                 print(m.id, "error")
         Extracted.objects.exclude(lang__in=["vi", "en"]).delete()
         return super(LangDetectView, self).render_to_response(context, **response_kwargs)
+# homepage
 class HomePageView(TemplateView):
     template_name = "index.html"
+
+#fucntion return result from server
+def returnResult(request):
+    result = request.POST.get("input","")
+    print(result)
+    return HttpResponse("spam")
